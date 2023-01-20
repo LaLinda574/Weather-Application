@@ -8,11 +8,36 @@ body {
   background-color: #ffcbcb;
   color: #132743;
   font-family: Century Gothic, "Times New Roman", Times, serif;
+  max-width: 70%;
+  margin: 0 auto;
+  border: 5px solid #407088;
+  border-radius: 5px;
 }
 
-/*Section 1*/
-/*Section 2*/
-/*Section 3*/
-/*Section 4*/
-/*Section 5*/
-/*Section 6*/
+/*Section 1 Welcome*/
+#sec1 {
+  margin: 20px;
+  margin-bottom: 0px;
+}
+
+/*Section 2 Date and Time*/
+#sec2 {
+  margin: 20px;
+  margin-top: 0px;
+}
+/*Section 3 Search Form*/
+#sec3 {
+  margin: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+/*Section 4 Use Current Location*/
+#sec4 {
+  margin: 20px;
+  margin-top: 0px;
+}
+/*Section 5 Current Weather Response*/
+#sec5 {
+}
+/*Section 6 Footer*/
