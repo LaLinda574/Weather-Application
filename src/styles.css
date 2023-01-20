@@ -24,20 +24,31 @@ body {
 #sec2 {
   margin: 20px;
   margin-top: 0px;
+  font-size: 15px;
 }
 /*Section 3 Search Form*/
 #sec3 {
   margin: 20px;
   margin-bottom: 0px;
-  padding-bottom: 20px;
   padding-top: 20px;
+}
+#sec3Example {
+  padding: 5px;
 }
 /*Section 4 Use Current Location*/
 #sec4 {
-  margin: 20px;
+  margin-bottom: 20px;
   margin-top: 0px;
 }
 /*Section 5 Current Weather Response*/
 #sec5 {
 }
+
+#sec5Button {
+  max-width: fit-content;
+  margin: 0 auto;
+}
 /*Section 6 Footer*/
+#sec6 {
+  font-size: 10px;
+}
