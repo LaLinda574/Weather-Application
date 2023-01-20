@@ -6,7 +6,7 @@ sec2item1.innerHTML = `${currentTime}`;
 
 // Weather Retrival Here
 let apiKey = "a55a267ea76dae6beeba72af27b769dc";
-let city = "Sydney";
+let city = document.querySelector("h1");
 let apiURLSearch = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
 function showTemp(response) {
@@ -25,7 +25,7 @@ function showTemp(response) {
   let sec5C2subC1R3c2 = document.querySelector("#sec5C2subC1R3c2");
   sec5C2subC1R3c2.innerHTML = `Today's Low is <br />${lowTemp}℉`;
   let h1 = document.querySelector("h1");
-  h1.innerHTML = `${currentCity}`;
+  h1.innerHTML = `Current Weather in ${currentCity}`;
 }
 
 axios
