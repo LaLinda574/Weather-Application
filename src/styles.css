@@ -42,6 +42,11 @@ body {
 }
 /*Section 5 Current Weather Response*/
 #sec5 {
+  margin: 10px;
+}
+
+#sec5C2subC1R2 {
+  margin-bottom: 20px;
 }
 
 #sec5Button {
