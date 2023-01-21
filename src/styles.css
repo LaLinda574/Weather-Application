@@ -35,10 +35,25 @@ body {
 #sec3Example {
   padding: 5px;
 }
+#searchSubmit {
+  border: 3px solid #407088;
+  border-radius: 3px;
+  color: #ffb5b5;
+  font-weight: bold;
+  background-color: #407088;
+}
 /*Section 4 Use Current Location*/
 #sec4 {
   margin-bottom: 20px;
   margin-top: 0px;
+}
+
+#geoLocation {
+  border: 3px solid #407088;
+  border-radius: 3px;
+  color: #ffb5b5;
+  font-weight: bold;
+  background-color: #407088;
 }
 /*Section 5 Current Weather Response*/
 #sec5 {
@@ -52,6 +67,11 @@ body {
 #sec5Button {
   max-width: fit-content;
   margin: 0 auto;
+  border: 3px solid #407088;
+  border-radius: 3px;
+  color: #ffb5b5;
+  font-weight: bold;
+  background-color: #407088;
 }
 /*Section 6 Footer*/
 #sec6 {
