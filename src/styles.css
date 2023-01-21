@@ -10,6 +10,7 @@ body {
   font-family: Century Gothic, "Times New Roman", Times, serif;
   max-width: 70%;
   margin: 0 auto;
+  margin-top: 30px;
   border: 5px solid #407088;
   border-radius: 5px;
 }
