@@ -17,13 +17,13 @@ function showTemp(response) {
   let lowTemp = Math.round(response.data.main.temp_min);
   let currentCity = response.data.name;
   let sec5C2subC1R1c1Item1 = document.querySelector("#sec5C2subC1R1c1Item1");
-  sec5C2subC1R1c1Item1.innerHTML = `Current Temperature Is <br />${currentTemp}℉`;
+  sec5C2subC1R1c1Item1.innerHTML = `${currentTemp}℉`;
   let sec5C2subC1R1c2 = document.querySelector("#sec5C2subC1R1c2");
-  sec5C2subC1R1c2.innerHTML = `Feels Like <br />${feelsLike}℉`;
+  sec5C2subC1R1c2.innerHTML = `${feelsLike}℉`;
   let sec5C2subC1R3c1 = document.querySelector("#sec5C2subC1R3c1");
-  sec5C2subC1R3c1.innerHTML = `Today's High is <br />${highTemp}℉`;
+  sec5C2subC1R3c1.innerHTML = `${highTemp}℉`;
   let sec5C2subC1R3c2 = document.querySelector("#sec5C2subC1R3c2");
-  sec5C2subC1R3c2.innerHTML = `Today's Low is <br />${lowTemp}℉`;
+  sec5C2subC1R3c2.innerHTML = `${lowTemp}℉`;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `Current Weather in ${currentCity}`;
 }
