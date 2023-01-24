@@ -74,6 +74,12 @@ body {
   font-weight: bold;
   background-color: #407088;
 }
+/*Section 6 5-Day Forecast*/
+#sec6 {
+  margin-bottom: 50px;
+  margin-top: 25px;
+}
+
 /*Section 7 Footer*/
 #sec7 {
   font-size: 10px;
