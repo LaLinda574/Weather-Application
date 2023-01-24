@@ -15,6 +15,8 @@ function showTemp(response) {
   let feelsLike = Math.round(response.data.main.feels_like);
   let highTemp = Math.round(response.data.main.temp_max);
   let lowTemp = Math.round(response.data.main.temp_min);
+  let currentCondition = response.data.weather[0].icon;
+  let currentMainCondition = response.data.weather[0].id;
   let currentCity = response.data.name;
   let sec5C2subC1R1c1Item1 = document.querySelector("#sec5C2subC1R1c1Item1");
   sec5C2subC1R1c1Item1.innerHTML = `${currentTemp}℉`;
@@ -26,6 +28,61 @@ function showTemp(response) {
   sec5C2subC1R3c2.innerHTML = `${lowTemp}℉`;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `Current Weather in ${currentCity}`;
+  let currentConditionImage = document.querySelector("#sec5C1Image");
+
+  if (currentCondition === "01d") {
+    currentConditionImage.innerHTML = `<img src="img/clear_sky.png" alt="Clear Sky" />`;
+  } else {
+    if (currentCondition === "01n") {
+      currentConditionImage.innerHTML = `<img src="img/clear_sky.png" alt="Clear Sky" />`;
+    } else {
+      if (currentCondition === "02d") {
+        currentConditionImage.innerHTML = `<img src="img/partly_cloudy.png" alt="Partly Cloudy" />`;
+      } else {
+        if (currentCondition === "02n") {
+          currentConditionImage.innerHTML = `<img src="img/partly_cloudy.png" alt="Partly Cloudy" />`;
+        } else {
+          if (currentCondition === "03d") {
+            currentConditionImage.innerHTML = `<img src="img/partly_cloudy.png" alt="Partly Cloudy" />`;
+          } else {
+            if (currentCondition === "03n") {
+              currentConditionImage.innerHTML = `<img src="img/partly_cloudy.png" alt="Partly Cloudy" />`;
+            } else {
+              if (currentCondition === "04d") {
+                currentConditionImage.innerHTML = `<img src="img/cloudy.png" alt="Cloudy" />`;
+              } else {
+                if (currentCondition === "04n") {
+                  currentConditionImage.innerHTML = `<img src="img/cloudy.png" alt="Cloudy" />`;
+                } else {
+                  if (currentCondition === "11d") {
+                    currentConditionImage.innerHTML = `<img src="img/thunderstorm.png" alt="Thunderstorm" />`;
+                  } else {
+                    if (currentCondition === "09d") {
+                      currentConditionImage.innerHTML = `<img src="img/drizzle.png" alt="Drizzle" />`;
+                    } else {
+                      if (currentCondition === "10d") {
+                        currentConditionImage.innerHTML = `<img src="img/rain.png" alt="Rain" />`;
+                      } else {
+                        if (currentCondition === "13d") {
+                          currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Snow" />`;
+                        } else {
+                          if (currentMainCondition === "781") {
+                            currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Tornado" />`;
+                          } else {
+                            currentConditionImage.innerHTML = `<img src="img/haze.png" alt="Haze/Fog/Smoke"`;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 axios
