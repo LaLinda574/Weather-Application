@@ -65,3 +65,11 @@ form.addEventListener("submit", search);
 
 let button = document.querySelector("#geoLocation");
 button.addEventListener("click", locateUser);
+
+//Five Day Forcast Icon Reference
+// --- Clear Sun --- <i class="fa=regular fa-sun"></i>
+// --- Partly Cloudy --- <i class="fa-solid fa-cloud-sun"></i>
+// --- Cloudy --- <i class="fa-solid fa-cloud"></i>
+// --- Lightning --- <i class="fa-solid fa-bolt"></i>
+// --- Rain --- <i class="fa-solid fa-cloud-showers-heavy"></i>
+// ---Snow --- <i class="fa-regular fa-snowflake"></i>

@@ -61,6 +61,15 @@ body {
   margin: 10px;
 }
 
+.primaryInformation {
+  font-size: xx-large;
+}
+
+.sec5C1Image img {
+  height: 300px;
+  width: 300px;
+}
+
 #sec5C2subC1R2 {
   margin-bottom: 20px;
 }
@@ -78,6 +87,15 @@ body {
 #sec6 {
   margin-bottom: 50px;
   margin-top: 25px;
+}
+
+#sec6r1p1 {
+  text-align: center;
+}
+
+.fa-regular,
+.fa-sun {
+  font-size: xx-large;
 }
 
 /*Section 7 Footer*/
