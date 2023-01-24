@@ -39,7 +39,7 @@ body {
 #searchSubmit {
   border: 3px solid #407088;
   border-radius: 3px;
-  color: #ffb5b5;
+  color: #ffcbcb;
   font-weight: bold;
   background-color: #407088;
 }
@@ -52,7 +52,7 @@ body {
 #geoLocation {
   border: 3px solid #407088;
   border-radius: 3px;
-  color: #ffb5b5;
+  color: #ffcbcb;
   font-weight: bold;
   background-color: #407088;
 }
@@ -70,7 +70,7 @@ body {
   margin: 0 auto;
   border: 3px solid #407088;
   border-radius: 3px;
-  color: #ffb5b5;
+  color: #ffcbcb;
   font-weight: bold;
   background-color: #407088;
 }
