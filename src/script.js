@@ -100,7 +100,6 @@ let days = [
   "Saturday",
 ];
 let day = currentTime.getDay(currentTime.getDate());
-
 let tomorrowDay = runTomorrowProgram(day);
 let out2Day = run2DayProgram(day);
 let out3Day = run3DayProgram(day);
@@ -129,6 +128,8 @@ function showTemp(response) {
   let currentCondition = response.data.weather[0].icon;
   let currentMainCondition = response.data.weather[0].id;
   let currentCity = response.data.name;
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
   let sec5C2subC1R1c1Item1 = document.querySelector("#sec5C2subC1R1c1Item1");
   sec5C2subC1R1c1Item1.innerHTML = `${currentTemp}℉`;
   let sec5C2subC1R1c2 = document.querySelector("#sec5C2subC1R1c2");
@@ -140,6 +141,8 @@ function showTemp(response) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = `Current Weather in ${currentCity}`;
   let currentConditionImage = document.querySelector("#sec5C1Image");
+  let apiKey = "a55a267ea76dae6beeba72af27b769dc";
+  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
 
   if (currentCondition === "01d") {
     currentConditionImage.innerHTML = `<img src="img/clear_sky.png" alt="Clear Sky" />`;
@@ -194,11 +197,16 @@ function showTemp(response) {
       }
     }
   }
+
+  axios
+    .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
+    .then(showTemp);
+  axios.get(forecastURL).then(fiveDayForecast);
 }
 
-axios
-  .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
-  .then(showTemp);
+//axios
+// .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
+//  .then(showTemp);
 
 // Search Form Here
 function search(event) {
