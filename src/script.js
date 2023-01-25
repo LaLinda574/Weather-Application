@@ -1,9 +1,11 @@
-// Current Time Section
+// Current Time Section in Section 2
 
 let currentTime = new Date();
 let date = currentTime.getDate();
 let sec2item1 = document.querySelector("#sec2item1");
 sec2item1.innerHTML = `${currentTime}`;
+
+//5 day forecast weekdays in Sec6
 
 function runTomorrowProgram(day) {
   if (day + 1 <= 6) {
