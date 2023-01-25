@@ -85,8 +85,10 @@ body {
 }
 /*Section 6 5-Day Forecast*/
 #sec6 {
+  margin: 0 auto;
   margin-bottom: 50px;
   margin-top: 25px;
+  margin-left: 10px;
 }
 
 #sec6r1p1 {
