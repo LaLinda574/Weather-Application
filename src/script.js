@@ -119,6 +119,72 @@ let apiURLSearch = `https://api.openweathermap.org/data/2.5/weather?q=`;
 // api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 let apiURLForecast = `https://api.openweathermap.org/data/2.5/forecast?`;
 
+//Five Day Forcast Icon Reference
+// --- Clear Sun --- <i class="fa=regular fa-sun"></i>
+// --- Partly Cloudy --- <i class="fa-solid fa-cloud-sun"></i>
+// --- Cloudy --- <i class="fa-solid fa-cloud"></i>
+// --- Lightning --- <i class="fa-solid fa-bolt"></i>
+// --- Rain --- <i class="fa-solid fa-cloud-showers-heavy"></i>
+// ---Snow --- <i class="fa-regular fa-snowflake"></i>
+// ---Tornado --- <i class="fa-solid fa-tornado"></i>
+// ---Smoke/Fog --- <i class="fa-solid fa-smog"></i>
+
+function iconRetrieval(iconID) {
+  if (iconID === "01d") {
+    return `<i class="fa-regular fa-sun"></i>`;
+  } else {
+    if (iconID === "01n") {
+      return `<i class="fa-regular fa-sun"></i>`;
+    } else {
+      if (iconID === "02d") {
+        return `<i class="fa-solid fa-cloud-sun"></i>`;
+      } else {
+        if (iconID === "02n") {
+          return `<i class="fa-solid fa-cloud-sun"></i>`;
+        } else {
+          if (iconID === "03d") {
+            return `<i class="fa-solid fa-cloud-sun"></i>`;
+          } else {
+            if (iconID === "03n") {
+              return `<i class="fa-solid fa-cloud-sun"></i>`;
+            } else {
+              if (iconID === "04d") {
+                return `<i class="fa-solid fa-cloud"></i>`;
+              } else {
+                if (iconID === "04n") {
+                  return `<i class="fa-solid fa-cloud"></i>`;
+                } else {
+                  if (iconID === "11d") {
+                    return `<i class="fa-solid fa-bolt"></i>`;
+                  } else {
+                    if (iconID === "09d") {
+                      return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+                    } else {
+                      if (iconID === "10d") {
+                        return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+                      } else {
+                        if (iconID === "13d") {
+                          return `<i class="fa-regular fa-snowflake"></i>`;
+                        } else {
+                          if (iconID === "781") {
+                            return `<i class="fa-solid fa-tornado"></i>`;
+                          } else {
+                            return `<i class="fa-solid fa-smog"></i>`;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 function showTemp(response) {
   console.log(response);
   let currentTemp = Math.round(response.data.main.temp);
@@ -232,6 +298,17 @@ function fiveDayForecast(response) {
   let day4Low = document.querySelector("#sec6r2c4p3s2");
   let day5High = document.querySelector("#sec6r2c5p3s1");
   let day5Low = document.querySelector("#sec6r2c5p3s2");
+  let tomorrowIcon = document.querySelector("#sec6r2c1p2");
+  let day2Icon = document.querySelector("#sec6r2c2p2");
+  let day3Icon = document.querySelector("#sec6r2c3p2");
+  let day4Icon = document.querySelector("#sec6r2c4p2");
+  let day5Icon = document.querySelector("#sec6r2c5p2");
+  let tomorrowCondition = response.data.list[1].weather[0].icon;
+  let day2Condition = response.data.list[2].weather[0].icon;
+  let day3Condition = response.data.list[3].weather[0].icon;
+  let day4Condition = response.data.list[4].weather[0].icon;
+  let day5Condition = response.data.list[5].weather[0].icon;
+
   tomorrowHigh.innerHTML =
     "High/Low <br />" + Math.round(response.data.list[1].main.temp_max);
   tomorrowLow.innerHTML = Math.round(response.data.list[1].main.temp_min);
@@ -247,6 +324,12 @@ function fiveDayForecast(response) {
   day5High.innerHTML =
     "High/Low <br />" + Math.round(response.data.list[5].main.temp_max);
   day5Low.innerHTML = Math.round(response.data.list[5].main.temp_min);
+
+  tomorrowIcon.innerHTML = iconRetrieval(tomorrowCondition);
+  day2Icon.innerHTML = iconRetrieval(day2Condition);
+  day3Icon.innerHTML = iconRetrieval(day3Condition);
+  day4Icon.innerHTML = iconRetrieval(day4Condition);
+  day5Icon.innerHTML = iconRetrieval(day5Condition);
 }
 // retrieve Position Weather
 function retrievePosition(position) {
@@ -271,11 +354,3 @@ form.addEventListener("submit", search);
 
 let button = document.querySelector("#geoLocation");
 button.addEventListener("click", locateUser);
-
-//Five Day Forcast Icon Reference
-// --- Clear Sun --- <i class="fa=regular fa-sun"></i>
-// --- Partly Cloudy --- <i class="fa-solid fa-cloud-sun"></i>
-// --- Cloudy --- <i class="fa-solid fa-cloud"></i>
-// --- Lightning --- <i class="fa-solid fa-bolt"></i>
-// --- Rain --- <i class="fa-solid fa-cloud-showers-heavy"></i>
-// ---Snow --- <i class="fa-regular fa-snowflake"></i>
