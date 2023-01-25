@@ -1,13 +1,122 @@
 // Current Time Section
 
 let currentTime = new Date();
+let date = currentTime.getDate();
 let sec2item1 = document.querySelector("#sec2item1");
 sec2item1.innerHTML = `${currentTime}`;
+
+function runTomorrowProgram(day) {
+  if (day + 1 <= 6) {
+    return [day + 1];
+  } else {
+    return 0;
+  }
+}
+
+function run2DayProgram(day) {
+  if (day + 2 <= 6) {
+    return [day + 2];
+  } else {
+    if (day + 2 === 7) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+}
+
+function run3DayProgram(day) {
+  if (day + 3 <= 6) {
+    return [day + 3];
+  } else {
+    if (day + 3 === 7) {
+      return 0;
+    } else {
+      if (day + 3 === 8) {
+        return 1;
+      } else return 2;
+    }
+  }
+}
+
+function run4DayProgram(day) {
+  if (day + 4 <= 6) {
+    return [day + 4];
+  } else {
+    if (day + 4 === 7) {
+      return 0;
+    } else {
+      if (day + 4 === 8) {
+        return 1;
+      } else {
+        if (day + 4 === 9) {
+          return 2;
+        } else {
+          return 3;
+        }
+      }
+    }
+  }
+}
+
+function run5DayProgram(day) {
+  if (day + 5 <= 6) {
+    return [day + 5];
+  } else {
+    if (day + 5 === 7) {
+      return 0;
+    } else {
+      if (day + 5 === 8) {
+        return 1;
+      } else {
+        if (day + 5 === 9) {
+          return 2;
+        } else {
+          if (day + 5 === 10) {
+            return 3;
+          } else {
+            return 4;
+          }
+        }
+      }
+    }
+  }
+}
+
+let tomorrow = document.querySelector("#sec6r2c1p1");
+let day2Out = document.querySelector("#sec6r2c2p1");
+let day3Out = document.querySelector("#sec6r2c3p1");
+let day4Out = document.querySelector("#sec6r2c4p1");
+let day5Out = document.querySelector("#sec6r2c5p1");
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = currentTime.getDay(currentTime.getDate());
+
+let tomorrowDay = runTomorrowProgram(day);
+let out2Day = run2DayProgram(day);
+let out3Day = run3DayProgram(day);
+let out4Day = run4DayProgram(day);
+let out5Day = run5DayProgram(day);
+tomorrow.innerHTML = days[tomorrowDay];
+day2Out.innerHTML = days[out2Day];
+day3Out.innerHTML = days[out3Day];
+day4Out.innerHTML = days[out4Day];
+day5Out.innerHTML = days[out5Day];
 
 // Weather Retrival Here
 let apiKey = "a55a267ea76dae6beeba72af27b769dc";
 let city = document.querySelector("h1");
 let apiURLSearch = `https://api.openweathermap.org/data/2.5/weather?q=`;
+
+// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+let apiURLForecast = `https://api.openweathermap.org/data/2.5/forecast?`;
 
 function showTemp(response) {
   console.log(response);
@@ -101,6 +210,34 @@ function search(event) {
     .then(showTemp);
 }
 
+function fiveDayForecast(response) {
+  console.log(response);
+  let tomorrowHigh = document.querySelector("#sec6r2c1p3s1");
+  let tomorrowLow = document.querySelector("#sec6r2c1p3s2");
+  let day2High = document.querySelector("#sec6r2c2p3s1");
+  let day2Low = document.querySelector("#sec6r2c2p3s2");
+  let day3High = document.querySelector("#sec6r2c3p3s1");
+  let day3Low = document.querySelector("#sec6r2c3p3s2");
+  let day4High = document.querySelector("#sec6r2c4p3s1");
+  let day4Low = document.querySelector("#sec6r2c4p3s2");
+  let day5High = document.querySelector("#sec6r2c5p3s1");
+  let day5Low = document.querySelector("#sec6r2c5p3s2");
+  tomorrowHigh.innerHTML =
+    "High/Low <br />" + Math.round(response.data.list[1].main.temp_max);
+  tomorrowLow.innerHTML = Math.round(response.data.list[1].main.temp_min);
+  day2High.innerHTML =
+    "High/Low <br />" + Math.round(response.data.list[2].main.temp_max);
+  day2Low.innerHTML = Math.round(response.data.list[2].main.temp_min);
+  day3High.innerHTML =
+    "High/Low <br />" + Math.round(response.data.list[3].main.temp_max);
+  day3Low.innerHTML = Math.round(response.data.list[3].main.temp_min);
+  day4High.innerHTML =
+    "High/Low <br />" + Math.round(response.data.list[4].main.temp_max);
+  day4Low.innerHTML = Math.round(response.data.list[4].main.temp_min);
+  day5High.innerHTML =
+    "High/Low <br />" + Math.round(response.data.list[5].main.temp_max);
+  day5Low.innerHTML = Math.round(response.data.list[5].main.temp_min);
+}
 // retrieve Position Weather
 function retrievePosition(position) {
   let lat = position.coords.latitude;
@@ -108,7 +245,9 @@ function retrievePosition(position) {
   console.log(`${lat}, ${lon}`);
   let apiKey = "a55a267ea76dae6beeba72af27b769dc";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(showTemp);
+  axios.get(forecastURL).then(fiveDayForecast);
 }
 
 //locate User Function
