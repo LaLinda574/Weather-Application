@@ -237,19 +237,35 @@ function showTemp(response) {
                   if (currentCondition === "11d") {
                     currentConditionImage.innerHTML = `<img src="img/thunderstorm.png" alt="Thunderstorm" />`;
                   } else {
-                    if (currentCondition === "09d") {
-                      currentConditionImage.innerHTML = `<img src="img/drizzle.png" alt="Drizzle" />`;
+                    if (currentCondition === "11n") {
+                      currentConditionImage.innerHTML = `<img src="img/thunderstorm.png" alt="Thunderstorm" />`;
                     } else {
-                      if (currentCondition === "10d") {
-                        currentConditionImage.innerHTML = `<img src="img/rain.png" alt="Rain" />`;
+                      if (currentCondition === "09n") {
+                        currentConditionImage.innerHTML = `<img src="img/drizzle.png" alt="Drizzle" />`;
                       } else {
-                        if (currentCondition === "13d") {
-                          currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Snow" />`;
+                        if (currentCondition === "09d") {
+                          currentConditionImage.innerHTML = `<img src="img/drizzle.png" alt="Drizzle" />`;
                         } else {
-                          if (currentMainCondition === "781") {
-                            currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Tornado" />`;
+                          if (currentCondition === "10d") {
+                            currentConditionImage.innerHTML = `<img src="img/rain.png" alt="Rain" />`;
                           } else {
-                            currentConditionImage.innerHTML = `<img src="img/haze.png" alt="Haze/Fog/Smoke"`;
+                            if (currentCondition === "10n") {
+                              currentConditionImage.innerHTML = `<img src="img/rain.png" alt="Rain" />`;
+                            } else {
+                              if (currentCondition === "13n") {
+                                currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Snow" />`;
+                              } else {
+                                if (currentCondition === "13d") {
+                                  currentConditionImage.innerHTML = `<img src="img/snow.png" alt="Snow" />`;
+                                } else {
+                                  if (currentMainCondition === "781") {
+                                    currentConditionImage.innerHTML = `<img src="img/tornado.png" alt="Tornado" />`;
+                                  } else {
+                                    currentConditionImage.innerHTML = `<img src="img/haze.png" alt="Haze/Fog/Smoke"`;
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -268,6 +284,11 @@ function showTemp(response) {
     .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
     .then(showTemp);
   axios.get(forecastURL).then(fiveDayForecast);
+
+  todayFahrenheitNow = response.data.main.temp;
+  todayFahrenheitFeel = response.data.main.feels_like;
+  todayFahrenheitHigh = response.data.main.temp_max;
+  todayFahrenheitLow = response.data.main.temp_min;
 }
 
 //axios
@@ -280,7 +301,6 @@ function search(event) {
   let newCity = document.querySelector("#search-city-input");
   let h1 = document.querySelector("h1");
   h1.innerHTML = `Current Weather for ${newCity.value}`;
-  console.log(newCity.value);
   axios
     .get(`${apiURLSearch}${newCity.value}&appid=${apiKey}&units=imperial`)
     .then(showTemp);
@@ -330,6 +350,17 @@ function fiveDayForecast(response) {
   day3Icon.innerHTML = iconRetrieval(day3Condition);
   day4Icon.innerHTML = iconRetrieval(day4Condition);
   day5Icon.innerHTML = iconRetrieval(day5Condition);
+
+  tomorrowFahrenheitHigh = response.data.list[1].main.temp_max;
+  tomorrowFahrenheitLow = response.data.list[1].main.temp_min;
+  day2FahrenheitHigh = response.data.list[2].main.temp_max;
+  day2FahrenheitLow = response.data.list[2].main.temp_min;
+  day3FahrenheitHigh = response.data.list[3].main.temp_max;
+  day3FahrenheitLow = response.data.list[3].main.temp_min;
+  day4FahrenheitHigh = response.data.list[4].main.temp_max;
+  day4FahrenheitLow = response.data.list[4].main.temp_min;
+  day5FahrenheitHigh = response.data.list[5].main.temp_max;
+  day5FahrenheitLow = response.data.list[5].main.temp_min;
 }
 // retrieve Position Weather
 function retrievePosition(position) {
@@ -349,8 +380,140 @@ function locateUser() {
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
 
+function convertTempCelcius(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#sec5C2subC1R1c1Item1");
+  let feelsLike = document.querySelector("#sec5C2subC1R1c2");
+  let highTemp = document.querySelector("#sec5C2subC1R3c1");
+  let lowTemp = document.querySelector("#sec5C2subC1R3c2");
+  let tomorrowHigh = document.querySelector("#sec6r2c1p3s1");
+  let tomorrowLow = document.querySelector("#sec6r2c1p3s2");
+  let day2High = document.querySelector("#sec6r2c2p3s1");
+  let day2Low = document.querySelector("#sec6r2c2p3s2");
+  let day3High = document.querySelector("#sec6r2c3p3s1");
+  let day3Low = document.querySelector("#sec6r2c3p3s2");
+  let day4High = document.querySelector("#sec6r2c4p3s1");
+  let day4Low = document.querySelector("#sec6r2c4p3s2");
+  let day5High = document.querySelector("#sec6r2c5p3s1");
+  let day5Low = document.querySelector("#sec6r2c5p3s2");
+  currentTemp.innerHTML = Math.round((todayFahrenheitNow - 32) * (5 / 9)) + "℃";
+  feelsLike.innerHTML = Math.round((todayFahrenheitFeel - 32) * (5 / 9)) + "℃";
+  highTemp.innerHTML = Math.round((todayFahrenheitHigh - 32) * (5 / 9)) + "℃";
+  lowTemp.innerHTML = Math.round((todayFahrenheitLow - 32) * (5 / 9)) + "℃";
+  tomorrowHigh.innerHTML =
+    Math.round((tomorrowFahrenheitHigh - 32) * (5 / 9)) + "℃";
+  tomorrowLow.innerHTML =
+    Math.round((tomorrowFahrenheitLow - 32) * (5 / 9)) + "℃";
+  day2High.innerHTML = Math.round((day2FahrenheitHigh - 32) * (5 / 9)) + "℃";
+  day2Low.innerHTML = Math.round((day2FahrenheitLow - 32) * (5 / 9)) + "℃";
+  day3High.innerHTML = Math.round((day3FahrenheitHigh - 32) * (5 / 9)) + "℃";
+  day3Low.innerHTML = Math.round((day3FahrenheitLow - 32) * (5 / 9)) + "℃";
+  day4High.innerHTML = Math.round((day4FahrenheitHigh - 32) * (5 / 9)) + "℃";
+  day4Low.innerHTML = Math.round((day4FahrenheitLow - 32) * (5 / 9)) + "℃";
+  day5High.innerHTML = Math.round((day5FahrenheitHigh - 32) * (5 / 9)) + "℃";
+  day5Low.innerHTML = Math.round((day5FahrenheitLow - 32) * (5 / 9)) + "℃";
+
+  todayCelciusNow = (todayFahrenheitNow - 32) * (5 / 9);
+  todayCelciusFeel = (todayFahrenheitFeel - 32) * (5 / 9);
+  todayCelciusHigh = (todayFahrenheitHigh - 32) * (5 / 9);
+  todayCelciusLow = (todayFahrenheitLow - 32) * (5 / 9);
+  tomorrowCelciusHigh = (tomorrowFahrenheitHigh - 32) * (5 / 9);
+  tomorrowCelciusLow = (tomorrowFahrenheitLow - 32) * (5 / 9);
+  day2CelciusHigh = (day2FahrenheitHigh - 32) * (5 / 9);
+  day2CelciusLow = (day2FahrenheitLow - 32) * (5 / 9);
+  day3CelciusHigh = (day3FahrenheitHigh - 32) * (5 / 9);
+  day3CelciusLow = (day3FahrenheitLow - 32) * (5 / 9);
+  day4CelciusHigh = (day4FahrenheitHigh - 32) * (5 / 9);
+  day4CelciusLow = (day4FahrenheitLow - 32) * (5 / 9);
+  day5CelciusHigh = (day5FahrenheitHigh - 32) * (5 / 9);
+  day5CelciusLow = (day5FahrenheitLow - 32) * (5 / 9);
+}
+
+function convertTempFahrenheit(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#sec5C2subC1R1c1Item1");
+  let feelsLike = document.querySelector("#sec5C2subC1R1c2");
+  let highTemp = document.querySelector("#sec5C2subC1R3c1");
+  let lowTemp = document.querySelector("#sec5C2subC1R3c2");
+  let tomorrowHigh = document.querySelector("#sec6r2c1p3s1");
+  let tomorrowLow = document.querySelector("#sec6r2c1p3s2");
+  let day2High = document.querySelector("#sec6r2c2p3s1");
+  let day2Low = document.querySelector("#sec6r2c2p3s2");
+  let day3High = document.querySelector("#sec6r2c3p3s1");
+  let day3Low = document.querySelector("#sec6r2c3p3s2");
+  let day4High = document.querySelector("#sec6r2c4p3s1");
+  let day4Low = document.querySelector("#sec6r2c4p3s2");
+  let day5High = document.querySelector("#sec6r2c5p3s1");
+  let day5Low = document.querySelector("#sec6r2c5p3s2");
+  currentTemp.innerHTML = Math.round(todayCelciusNow * 1.8 + 32) + "℉";
+  feelsLike.innerHTML = Math.round(todayCelciusFeel * 1.8 + 32) + "℉";
+  highTemp.innerHTML = Math.round(todayCelciusHigh * 1.8 + 32) + "℉";
+  lowTemp.innerHTML = Math.round(todayCelciusLow * 1.8 + 32) + "℉";
+  tomorrowHigh.innerHTML = Math.round(tomorrowCelciusHigh * 1.8 + 32) + "℉";
+  tomorrowLow.innerHTML = Math.round(tomorrowCelciusLow * 1.8 + 32) + "℉";
+  day2High.innerHTML = Math.round(day2CelciusHigh * 1.8 + 32) + "℉";
+  day2Low.innerHTML = Math.round(day2CelciusLow * 1.8 + 32) + "℉";
+  day3High.innerHTML = Math.round(day3CelciusHigh * 1.8 + 32) + "℉";
+  day3Low.innerHTML = Math.round(day3CelciusLow * 1.8 + 32) + "℉";
+  day4High.innerHTML = Math.round(day4CelciusHigh * 1.8 + 32) + "℉";
+  day4Low.innerHTML = Math.round(day4CelciusLow * 1.8 + 32) + "℉";
+  day5High.innerHTML = Math.round(day5CelciusHigh * 1.8 + 32) + "℉";
+  day5Low.innerHTML = Math.round(day5CelciusLow * 1.8 + 32) + "℉";
+
+  todayFahrenheitNow = Math.round(todayCelciusNow * 1.8 + 32);
+  todayFahrenheitFeel = Math.round(todayCelciusFeel * 1.8 + 32);
+  todayFahrenheitHigh = Math.round(todayCelciusHigh * 1.8 + 32);
+  todayFahrenheitLow = Math.round(todayCelciusLow * 1.8 + 32);
+  tomorrowFahrenheitHigh = Math.round(tomorrowCelciusHigh * 1.8 + 32);
+  tomorrowFahrenheitLow = Math.round(tomorrowCelciusLow * 1.8 + 32);
+  day2FahrenheitHigh = Math.round(day2CelciusHigh * 1.8 + 32);
+  day2FahrenheitLow = Math.round(day2CelciusLow * 1.8 + 32);
+  day3FahrenheitHigh = Math.round(day3CelciusHigh * 1.8 + 32);
+  day3FahrenheitLow = Math.round(day3CelciusLow * 1.8 + 32);
+  day4FahrenheitHigh = Math.round(day4CelciusHigh * 1.8 + 32);
+  day4FahrenheitLow = Math.round(day4CelciusLow * 1.8 + 32);
+  day5FahrenheitHigh = Math.round(day5CelciusHigh * 1.8 + 32);
+  day5FahrenheitLow = Math.round(day5CelciusLow * 1.8 + 32);
+}
+
+let todayFahrenheitNow = null;
+let todayFahrenheitFeel = null;
+let todayFahrenheitHigh = null;
+let todayFahrenheitLow = null;
+let tomorrowFahrenheitHigh = null;
+let tomorrowFahrenheitLow = null;
+let day2FahrenheitHigh = null;
+let day2FahrenheitLow = null;
+let day3FahrenheitHigh = null;
+let day3FahrenheitLow = null;
+let day4FahrenheitHigh = null;
+let day4FahrenheitLow = null;
+let day5FahrenheitHigh = null;
+let day5FahrenheitLow = null;
+
+let todayCelciusNow = null;
+let todayCelciusFeel = null;
+let todayCelciusHigh = null;
+let todayCelciusLow = null;
+let tomorrowCelciusHigh = null;
+let tomorrowCelciusLow = null;
+let day2CelciusHigh = null;
+let day2CelciusLow = null;
+let day3CelciusHigh = null;
+let day3CelciusLow = null;
+let day4CelciusHigh = null;
+let day4CelciusLow = null;
+let day5CelciusHigh = null;
+let day5CelciusLow = null;
+
 let form = document.querySelector("#newCitySearchForm");
 form.addEventListener("submit", search);
 
 let button = document.querySelector("#geoLocation");
 button.addEventListener("click", locateUser);
+
+let celciusButton = document.querySelector("#sec5Button");
+celciusButton.addEventListener("click", convertTempCelcius);
+
+let fahrenheitButton = document.querySelector("#sec5Button2");
+fahrenheitButton.addEventListener("click", convertTempFahrenheit);
