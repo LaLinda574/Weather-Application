@@ -98,9 +98,19 @@ body {
   text-align: center;
 }
 
-.fa-regular,
-.fa-sun {
+.fiveDayIcon {
   font-size: xx-large;
+}
+.mainHeading {
+  font-size: x-large;
+  background: #407088;
+  color: #ffcbcb;
+  border-radius: 5px;
+}
+
+.headingFiveDay {
+  font-size: large;
+  font-weight: 500;
 }
 
 /*Section 7 Footer*/

@@ -185,6 +185,16 @@ function iconRetrieval(iconID) {
   }
 }
 
+function convertFirstLetterToUpperCase(str) {
+  var splitStr = str.toLowerCase().split(" ");
+  for (var i = 0; i < splitStr.length; i++) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+
+  return splitStr.join(" ");
+}
+
 function showTemp(response) {
   console.log(response);
   let currentTemp = Math.round(response.data.main.temp);
@@ -193,6 +203,11 @@ function showTemp(response) {
   let lowTemp = Math.round(response.data.main.temp_min);
   let currentCondition = response.data.weather[0].icon;
   let currentMainCondition = response.data.weather[0].id;
+  let description = response.data.weather[0].description;
+  let weatherDescription = document.querySelector("#weatherDescriptionText");
+  let windSpeedArea = document.querySelector("#windSpeed");
+  let windSpeed = response.data.wind.speed;
+  windSpeedArea.innerHTML = `Wind Speed ${windSpeed}m/s`;
   let currentCity = response.data.name;
   let lat = response.data.coord.lat;
   let lon = response.data.coord.lon;
@@ -209,6 +224,8 @@ function showTemp(response) {
   let currentConditionImage = document.querySelector("#sec5C1Image");
   let apiKey = "a55a267ea76dae6beeba72af27b769dc";
   let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+
+  weatherDescription.innerHTML = convertFirstLetterToUpperCase(description);
 
   if (currentCondition === "01d") {
     currentConditionImage.innerHTML = `<img src="img/clear_sky.png" alt="Clear Sky" />`;
