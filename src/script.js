@@ -157,19 +157,35 @@ function iconRetrieval(iconID) {
                   if (iconID === "11d") {
                     return `<i class="fa-solid fa-bolt"></i>`;
                   } else {
-                    if (iconID === "09d") {
-                      return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+                    if (iconID === "11n") {
+                      return `<i class="fa-solid fa-bolt"></i>`;
                     } else {
-                      if (iconID === "10d") {
+                      if (iconID === "09d") {
                         return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
                       } else {
-                        if (iconID === "13d") {
-                          return `<i class="fa-regular fa-snowflake"></i>`;
+                        if (iconID === "09n") {
+                          return `<i class="fa-solid fa-bolt"></i>`;
                         } else {
-                          if (iconID === "781") {
-                            return `<i class="fa-solid fa-tornado"></i>`;
+                          if (iconID === "10n") {
+                            return `<i class="fa-solid fa-bolt"></i>`;
                           } else {
-                            return `<i class="fa-solid fa-smog"></i>`;
+                            if (iconID === "10d") {
+                              return `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+                            } else {
+                              if (iconID === "13d") {
+                                return `<i class="fa-regular fa-snowflake"></i>`;
+                              } else {
+                                if (iconID === "13n") {
+                                  return `<i class="fa-regular fa-snowflake"></i>`;
+                                } else {
+                                  if (iconID === "781") {
+                                    return `<i class="fa-solid fa-tornado"></i>`;
+                                  } else {
+                                    return `<i class="fa-solid fa-smog"></i>`;
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
