@@ -212,7 +212,6 @@ function convertFirstLetterToUpperCase(str) {
 }
 
 function showTemp(response) {
-  console.log(response);
   let currentTemp = Math.round(response.data.main.temp);
   let feelsLike = Math.round(response.data.main.feels_like);
   let highTemp = Math.round(response.data.main.temp_max);
@@ -313,9 +312,9 @@ function showTemp(response) {
     }
   }
 
-  axios
-    .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
-    .then(showTemp);
+  //axios
+  //  .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
+  //  .then(showTemp);
   axios.get(forecastURL).then(fiveDayForecast);
 
   todayFahrenheitNow = response.data.main.temp;
@@ -323,10 +322,6 @@ function showTemp(response) {
   todayFahrenheitHigh = response.data.main.temp_max;
   todayFahrenheitLow = response.data.main.temp_min;
 }
-
-//axios
-// .get(`${apiURLSearch}${city}&appid=${apiKey}&units=imperial`)
-//  .then(showTemp);
 
 // Search Form Here
 function search(event) {
@@ -340,7 +335,6 @@ function search(event) {
 }
 
 function fiveDayForecast(response) {
-  console.log(response);
   let tomorrowHigh = document.querySelector("#sec6r2c1p3s1");
   let tomorrowLow = document.querySelector("#sec6r2c1p3s2");
   let day2High = document.querySelector("#sec6r2c2p3s1");
@@ -399,12 +393,11 @@ function fiveDayForecast(response) {
 function retrievePosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  console.log(`${lat}, ${lon}`);
   let apiKey = "a55a267ea76dae6beeba72af27b769dc";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
   let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(showTemp);
-  axios.get(forecastURL).then(fiveDayForecast);
+  //axios.get(forecastURL).then(fiveDayForecast);
 }
 
 //locate User Function
