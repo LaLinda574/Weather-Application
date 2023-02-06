@@ -117,3 +117,9 @@ body {
 #sec7 {
   font-size: 10px;
 }
+
+/*All Sections*/
+.headers {
+  font-weight: 500;
+  font-size: 18px;
+}
